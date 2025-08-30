@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product-table
+      author: iskenderov-andrei
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: int8
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: float8
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: in_stock
+                  type: bool
+                  constraints:
+                    nullable: false

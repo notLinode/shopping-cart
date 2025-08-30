@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-customer-table
+      author: iskenderov-andrei
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: int8
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: varchar(127)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: varchar(127)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(127)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(127)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: varchar(63)
+                  constraints:
+                    nullable: false

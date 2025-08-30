@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changelog-tables/customer.yaml
+  - include:
+      file: db/changelog/changelog-tables/purchase.yaml
+  - include:
+      file: db/changelog/changelog-tables/product.yaml
+  - include:
+      file: db/changelog/changelog-tables/purchase-detail.yaml
+  - include:
+      file: db/changelog/changelog-insert-queries/test-data.sql

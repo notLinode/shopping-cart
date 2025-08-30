@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-purchase-detail-table
+      author: iskenderov-andrei
+      changes:
+        - createTable:
+            tableName: purchase_detail
+            columns:
+              - column:
+                  name: id
+                  type: int8
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: order_id
+                  type: int8
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_order_id
+                    referencedTableName: purchase
+                    referencedColumnNames: id
+              - column:
+                  name: product_id
+                  type: int8
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_id
+                    referencedTableName: product
+                    referencedColumnNames: id
+              - column:
+                  name: price
+                  type: float8
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int4
+                  constraints:
+                    nullable:
+                      false
