@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: shopping-cart
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/shoppingcart
+    username: pguser
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
