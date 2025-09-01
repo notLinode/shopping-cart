@@ -14,11 +14,11 @@ databaseChangeLog:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: order_id
+                  name: purchase_id
                   type: int8
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_order_id
+                    foreignKeyName: fk_purchase_id
                     referencedTableName: purchase
                     referencedColumnNames: id
               - column:
