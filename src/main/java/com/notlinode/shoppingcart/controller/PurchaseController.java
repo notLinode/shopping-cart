@@ -50,7 +50,6 @@ public class PurchaseController {
 
         return purchaseOptional.map(ResponseEntity::ok)
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
-
     }
 
 }
