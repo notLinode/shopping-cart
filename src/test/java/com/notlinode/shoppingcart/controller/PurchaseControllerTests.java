@@ -92,11 +92,10 @@ public class PurchaseControllerTests {
     }
 
     @Test
-    public void PurchaseController_CreatePurchase_ReturnBadRequest() throws Exception {
+    public void PurchaseController_CreatePurchase_ReturnBadRequestOnEmptyResponseFromService() throws Exception {
         Mockito.when(purchaseService.save(Mockito.any(PurchaseDto.class)))
                 .thenReturn(Optional.empty());
 
-        // Expecting bad request because of an empty optional
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/purchase/create")
                         .content(purchaseDtoString)
@@ -104,8 +103,10 @@ public class PurchaseControllerTests {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 
-        // Expecting validation error
+    @Test
+    public void PurchaseController_CreatePurchase_ReturnBadRequestOnValidationError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/purchase/create")
                         .content("{\"123\":\"456\"}")

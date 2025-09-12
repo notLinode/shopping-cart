@@ -92,18 +92,12 @@ public class PurchaseDetailControllerTests {
     }
 
     @Test
-    public void PurchaseDetailController_GetDetails_ReturnBadRequest() throws Exception {
+    public void PurchaseDetailController_GetDetails_ReturnBadRequestOnEmptyResponseFromService() throws Exception {
         PurchaseDetailDto detailDto = details.getFirst();
-        PurchaseDetailDto detailDtoInvalid = PurchaseDetailDto.builder()
-                .productId(1L)
-                .price(0.0)
-                .quantity(0)
-                .build();
 
         Mockito.when(detailService.addProduct(Mockito.any(PurchaseDetailDto.class)))
                 .thenReturn(Optional.empty());
 
-        // Expecting bad request because of an empty optional
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/purchase/123/detail")
                         .content(objectMapper.writeValueAsString(detailDto))
@@ -111,8 +105,16 @@ public class PurchaseDetailControllerTests {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 
-        // Expecting validation error
+    @Test
+    public void PurchaseDetailController_GetDetails_ReturnBadRequestOnValidationError() throws Exception {
+        PurchaseDetailDto detailDtoInvalid = PurchaseDetailDto.builder()
+                .productId(1L)
+                .price(0.0)
+                .quantity(0)
+                .build();
+
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/purchase/1/detail")
                         .content(objectMapper.writeValueAsString(detailDtoInvalid))
